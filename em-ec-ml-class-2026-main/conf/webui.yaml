@@ -1,0 +1,3 @@
+data_path: data/transformed
+model_path: checkpoints/RF_regressor.pk
+images_path: docs/imgs/webui

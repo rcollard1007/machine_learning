@@ -1,0 +1,69 @@
+# --- PROJECT ---
+
+[project]
+name = "em-ec-ml-class-2026"
+version = "0.1.0"
+description = "Teaching material for EM/EC Lyon Data Science class, 2026"
+readme = "README.md"
+authors = [
+    { name = "jbaujogue", email = "jb.aujogue@gmail.com" },
+    { name = "jsavinien", email = "savinien@em-lyon.com" }
+]
+requires-python = ">=3.12,<3.13"
+
+# --- DEPENDENCIES ---
+
+dependencies = [
+    "catboost>=1.2.10",
+    "dill>=0.4.1",
+    "graphviz>=0.21",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "scikit-learn>=1.9.1",
+    "gradio>=5.0.0",
+    "pyarrow>=26.0.0",
+    "fire>=0.7.1",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0",
+    "ruff>=0.17.3",
+]
+
+[tool.uv]
+package = true
+
+# --- CLI ---
+
+[project.scripts]
+eclyon = "eclyon.__main__:main"
+
+# --- CODE-QA ---
+
+[tool.mypy]
+exclude = '^(?!src).*'
+disable_error_code = """
+    call-overload,
+    import-untyped,
+    literal-required,
+    override,
+    typeddict-item,
+    union-attr,
+    var-annotated
+"""
+
+[tool.ruff]
+exclude = ["notebooks/"]
+fix = true
+line-length = 120
+
+[tool.ruff.lint]
+select = ["C", "E", "F", "I", "W", "N", "B"]
+ignore = ["N815"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
